@@ -1,0 +1,25 @@
+{
+  "name": "imovie",
+  "homepage": "https://github.com/laoxiaolin/imovie",
+  "description": "imove site",
+  "main": "",
+  "keywords": [
+    "imove"
+  ],
+  "authors": [
+    "john lee"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/libs",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}

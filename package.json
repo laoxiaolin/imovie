@@ -1,0 +1,30 @@
+{
+  "name": "imove",
+  "version": "0.0.1",
+  "description": "imove",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.15.2",
+    "jade": "^1.11.0",
+    "mongoose": "^4.9.0",
+    "moment": "^2.17.1",
+    "underscore": "^1.8.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/laoxiaolin/imovie.git"
+  },
+  "keywords": [
+    "imooc"
+  ],
+  "author": "John Lee",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/laoxiaolin/imovie/issues"
+  },
+  "homepage": "https://github.com/laoxiaolin/imovie#readme"
+}
