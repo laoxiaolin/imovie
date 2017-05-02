@@ -1,0 +1,17 @@
+nav.navbar.navbar-default.navbar-fixed-top.navbar-inverse(role="navigation")
+  .container-fluid
+    .navbar-header
+      button(type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-movie-nav" aria-expanded="false")
+        span.sr-only Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      a.navbar-brand(href="#") MM电影
+    .collapse.navbar-collapse#bs-movie-nav
+      ul.nav.navbar-nav
+        li.active
+          a(href='#') 首页
+        li
+          a(routerLink="/sanzijing" routerLinkActive="active" href="#") 大片推荐
+        li
+          a(routerLink="/qianziwen" routerLinkActive="active" href="#") 新片推荐

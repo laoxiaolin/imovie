@@ -44,7 +44,7 @@ gulp.task('browsersync', ()=>{
   
   })
 
-  // gulp.watch(paths.pug, ['pug-watch']);
+  gulp.watch(paths.pug, ['pug-watch']);
   gulp.watch("./dist/**/*.{html,htm,css,js}").on('change', reload);
   
 })
@@ -86,13 +86,13 @@ gulp.task('develop', () => {
   var stream = nodemon({ 
           script: src_dir + '/app.js',
           ext: 'js pug',
-          ignore: src_dir + '/public/js/*.js',
+          ignore: [src_dir + '/public/js/*.js', 'gulpfile.js'],
           tasks: ['jslint', 'pug'] })
  
   stream
-      .on('start', ['browsersync'], () => {
-        console.log('Start browsersync!')
-      })
+      // .on('start', ['browsersync'], () => {
+      //   console.log('Start browsersync!')
+      // })
       .on('restart', () => {
         console.log('restarted!')
       })
