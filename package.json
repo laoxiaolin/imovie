@@ -1,0 +1,36 @@
+{
+  "name": "smovie",
+  "version": "1.0.0",
+  "description": "Node.js+Express2.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/laoxiaolin/imovie.git"
+  },
+  "keywords": [
+    "movie",
+    "node",
+    "express",
+    "test"
+  ],
+  "author": "John",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/laoxiaolin/imovie/issues"
+  },
+  "homepage": "https://github.com/laoxiaolin/imovie#readme",
+  "devDependencies": {
+    "browser-sync": "^2.18.8",
+    "del": "^2.2.2",
+    "express": "^4.15.2",
+    "gulp": "^3.9.1",
+    "gulp-jshint": "^2.0.4",
+    "gulp-nodemon": "^2.2.1",
+    "gulp-pug": "^3.3.0",
+    "mongoose": "^4.9.7",
+    "pug": "^2.0.0-rc.1"
+  }
+}

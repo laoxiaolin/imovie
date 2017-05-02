@@ -1,0 +1,27 @@
+{
+  "name": "smovie",
+  "description": "Node.js+Express2.0",
+  "main": "app.js",
+  "authors": [
+    "John"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "movie",
+    "node",
+    "express",
+    "test"
+  ],
+  "homepage": "https://github.com/laoxiaolin/imovie",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "jquery": "^3.2.1",
+    "bootstrap": "^3.3.7"
+  }
+}
