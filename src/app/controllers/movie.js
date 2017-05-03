@@ -31,7 +31,14 @@ exports.detail = (req, res) => {
 
 //admin:list movie page
 exports.list = (req, res) => {
-   Movie.fetch(function(err, movies) {
+   Movie
+    .find({})
+    .populate({
+      path: 'category',
+      select: 'name',
+      options: { limit: 18 }
+    })
+    .exec(function(err, movies) {
        if (err) {
            console.log(err)
        }
@@ -44,7 +51,7 @@ exports.list = (req, res) => {
 }
 
 
-//admin:new movie page
+//admin:add new movie page
 exports.new = (req, res) => {
    Category.fetch(function(err, categories) {
        res.render('admin/movie/movie', {
@@ -107,7 +114,7 @@ exports.save = (req, res) => {
            }
 
            __movie = _.extend(movie, _movie)
-           __movie.save(function(err, movie) {
+           __movie.save((err, movie) => {
                if (err) {
                    console.log(err)
                }               
@@ -121,9 +128,7 @@ exports.save = (req, res) => {
 
 //admin:delete movie action
 exports.delete = (req, res) => {
-
    var id = req.query.id
-
    if (id) {
        Movie.remove({ _id: id }, function(err, movie) {
            if (err) {
@@ -132,6 +137,5 @@ exports.delete = (req, res) => {
                res.json({ success: 1 })
            }
        })
-
    }
 }

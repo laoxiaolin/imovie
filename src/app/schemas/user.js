@@ -6,7 +6,7 @@ var UserSchema = new mongoose.Schema({
     name: String,
     password: String,
     // 0:nomal user
-    // 1:verfied user
+    // 1:verfied user(邮件激活后的用户)
     // 2:professonal user
     // ..
     // >10: admin
