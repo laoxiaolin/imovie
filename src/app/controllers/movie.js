@@ -5,7 +5,7 @@ var _        = require('underscore')
 
 
  //front: movie detail page
-exports.detail = function(req, res) {
+exports.detail = (req, res) => {
    var id = req.params.id
 
    Movie
@@ -30,7 +30,7 @@ exports.detail = function(req, res) {
 
 
 //admin:list movie page
-exports.list = function(req, res) {
+exports.list = (req, res) => {
    Movie.fetch(function(err, movies) {
        if (err) {
            console.log(err)
@@ -57,7 +57,7 @@ exports.new = (req, res) => {
 
 
 //admin:update movie page
-exports.update = function(req, res) {
+exports.update = (req, res) => {
    var id = req.params.id
 
    if (id) {
@@ -74,7 +74,7 @@ exports.update = function(req, res) {
 }
 
 //admin：post save movie（addNew & update）
-exports.save = function(req, res) {
+exports.save = (req, res) => {
    var _movie = req.body.movie
    var id = _movie._id
    var __movie
@@ -120,7 +120,7 @@ exports.save = function(req, res) {
 }
 
 //admin:delete movie action
-exports.delete = function(req, res) {
+exports.delete = (req, res) => {
 
    var id = req.query.id
 

@@ -1,11 +1,29 @@
 var Index = require('../app/controllers/index')
 var Movie = require('../app/controllers/movie')
+var User  = require('../app/controllers/user')
 
 
 module.exports = (app) => {
 
+    //pre handle user
+    app.use(function(req, res, next) {
+        var _user = req.session.user
+        app.locals.user = _user
+        next()
+    })
+    
+
     // Index
     app.get('/', Index.index)
+
+    // memeber
+    app.get('/signup', User.showSignupPage)
+    app.get('/signin', User.showSigninPage)
+    app.get('/logout', User.logout)
+    app.post('/user/signup', User.signup)
+    app.post('/user/signin', User.signin)
+    app.get('/admin/user', User.list)
+    
 
 
 

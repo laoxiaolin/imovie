@@ -6,7 +6,7 @@ nav.navbar.navbar-default.navbar-fixed-top.navbar-inverse(role="navigation")
         span.icon-bar
         span.icon-bar
         span.icon-bar
-      a.navbar-brand(href="#") MM电影
+      a.navbar-brand(href="/") MM电影
     .collapse.navbar-collapse#bs-movie-nav
       ul.nav.navbar-nav
         li.active
@@ -15,3 +15,43 @@ nav.navbar.navbar-default.navbar-fixed-top.navbar-inverse(role="navigation")
           a(href="#") 大片推荐
         li
           a(href="#") 新片推荐
+      //- button.btn.btn-default.navbar-btn.navbar-right(type="button" data-toggle="modal" data-target="#signinModal") 登陆
+      if user
+        p.navbar-text.navbar-right 欢迎你, #{user.name}
+          span &nbsp;|&nbsp;
+          a.navbar-link(href="/logout") 退出 &nbsp;
+      else
+        p.navbar-text.navbar-right 已有账号? 
+          a.navbar-link(href="#", data-toggle="modal", data-target="#signinModal") 登陆
+          span &nbsp;|&nbsp;
+          a.navbar-link(href="#", data-toggle="modal", data-target="#signupModal") 注册 &nbsp;
+#signupModal.modal.fade
+  .modal-dialog(role="document")
+    .modal-content
+      form(method="POST", action="/user/signup")
+        .modal-header 用户注册
+        .modal-body
+          .form-group
+            label(for="signupName") 用户名
+            input#signupName.form-control(name="user[name]" type="text")
+          .form-group
+            label(for="signupPassword") 密码
+            input#signupPassword.form-control(name="user[password]" type="text")
+        .modal-footer
+          button.btn.btn-default(type="button", data-dismiss="modal") 关闭
+          button.btn.btn-success(type="submit") 提交
+#signinModal.modal.fade
+  .modal-dialog
+    .modal-content
+      form(method="POST", action="/user/signin")
+        .modal-header 用户登陆
+        .modal-body
+          .form-group
+            label(for="signinName") 用户名
+            input#signinName.form-control(name="user[name]" type="text")
+          .form-group
+            label(for="signinPassword") 密码
+            input#signinPassword.form-control(name="user[password]" type="text")
+        .modal-footer
+          button.btn.btn-default(type="button", data-dismiss="modal") 关闭
+          button.btn.btn-success(type="submit") 提交

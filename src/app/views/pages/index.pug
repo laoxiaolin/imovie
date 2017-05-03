@@ -11,10 +11,11 @@ block content
           .panel-body
             if cat.movies && cat.movies.length > 0
               each item in cat.movies
-                .col-mid-2
-                  .thumbnail
-                    a(href="/movie/" + item._id)
-                      img(src=item.poster alt=item.title)
-                    .caption
-                      h3 #{item.title}
-                      p: a.btn.btn-primary(href="/movie/" + item._id, role="button") 观看预告片
+                .row
+                  .col-sm-6.col-md-4
+                    .thumbnail
+                      a(href="/movie/" + item._id)
+                        img.img-responsive.img-thumbnail(src=item.poster alt=item.title width="200" height="243")
+                      .caption
+                        h3 #{item.title}
+                        p: a.btn.btn-primary(href="/movie/" + item._id, role="button") 观看预告片
