@@ -1,0 +1,24 @@
+body {
+  padding-top: 50px;
+}
+footer{
+  padding-bottom: 30px;
+}
+
+.carousel{
+  height: 200px;
+  background-color: #000;
+}
+
+.carousel .item{
+  height: 200px;
+  background-color: #000;
+}
+
+.carousel img{
+  width: 100%;
+}
+
+hr.divider{
+  margin: 40px 0;
+}

@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/laoxiaolin/imovie#readme",
   "devDependencies": {
+    "body-parser": "^1.17.1",
     "browser-sync": "^2.18.8",
     "del": "^2.2.2",
     "express": "^4.15.2",
@@ -30,6 +31,9 @@
     "gulp-jshint": "^2.0.4",
     "gulp-nodemon": "^2.2.1",
     "gulp-pug": "^3.3.0",
+    "jshint": "^2.9.4",
+    "moment": "^2.18.1",
+    "mongodb": "^2.2.26",
     "mongoose": "^4.9.7",
     "pug": "^2.0.0-rc.1"
   }

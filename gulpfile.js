@@ -2,7 +2,9 @@ var gulp     = require('gulp');
 var bs       = require('browser-sync').create();
 var nodemon  = require('gulp-nodemon');
 
+
 var pug      = require('gulp-pug');
+var jshint   = require('gulp-jshint'); 
 var del      = require('del');
 
 var reload      = bs.reload;
@@ -76,7 +78,7 @@ gulp.task('clean', () => {
 //检验JS文件ES6
 gulp.task('jslint', () => {  
   return gulp.src(paths.js)
-    .pipe(jshint('.jshintrc'))
+    .pipe(jshint())
 });
 
 
@@ -87,7 +89,7 @@ gulp.task('develop', () => {
           script: src_dir + '/app.js',
           ext: 'js pug',
           ignore: [src_dir + '/public/js/*.js', 'gulpfile.js'],
-          tasks: ['jslint', 'pug'] })
+          tasks: ['jslint'] })
  
   stream
       // .on('start', ['browsersync'], () => {
