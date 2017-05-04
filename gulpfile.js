@@ -2,7 +2,7 @@ var gulp     = require('gulp');
 var bs       = require('browser-sync').create();
 var nodemon  = require('gulp-nodemon');
 
-
+var mocha    = require('gulp-mocha');
 var pug      = require('gulp-pug');
 var jshint   = require('gulp-jshint'); 
 var del      = require('del');
@@ -82,6 +82,17 @@ gulp.task('jslint', () => {
     // .pipe(jshint.reporter('default'))
 });
 
+
+//设置mocha测试
+gulp.task('mocha', function() {
+    return gulp.src(['src/test/*.js'], { read: false })
+        .pipe(mocha({ 
+          reporter: 'spec'
+          // globals: {
+          //   should: require('should')
+          // }
+        }))
+});
 
 
 //设置node监控

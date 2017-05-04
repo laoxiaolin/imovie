@@ -4,14 +4,36 @@ var bodyParser = require('body-parser')
 var cookieParser = require('cookie-parser')
 var session      = require('express-session')
 var mongoStore   = require('connect-mongo')(session)
+var fs         = require('fs')
 
 var app     = express()
 
 //连接数据库
 var dbUrl   = 'mongodb://localhost:81/imovie'
-// mongoose.Promise = global.Promise
+mongoose.Promise = global.Promise
 mongoose.connect(dbUrl)
 
+
+//读取models下的所有文件
+var models_path = __dirname + '\\app\\models'
+// console.log(models_path)
+var walk = (path)=>{
+  fs
+  .readdirSync(path)
+  .forEach(function(file){
+    let newPath = path + '/' + file
+    let stat = fs.statSync(newPath)
+
+    if(stat.isFile()){
+      if(/.*\.js$/.test(file)){
+        require(newPath)
+      }
+    }else if(stat.isDirectory()){
+      walk(newPath)
+    }
+  })
+}
+walk(models_path)
 
 // 管理路径
 var src_dir = './src',

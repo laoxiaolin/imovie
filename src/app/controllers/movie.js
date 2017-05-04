@@ -6,6 +6,11 @@ var _        = require('underscore')
 exports.detail = (req, res) => {
    var id = req.params.id
 
+   Movie.update({_id: id}, {$inc: {pv: 1}}, (err) =>{
+      if(err){
+        console.log(err)
+      }
+   })
    Movie
       .findOne({'_id': id})
       .populate('category')
@@ -140,9 +145,9 @@ exports.delete = (req, res) => {
    }
 }
 
-//admin:delete movie action
+//admin:save upload moviePoster action
 exports.savePoster = (req, res, next) => {
-   console.log(req.file)
+   // console.log(req.file)
    if(req.file){
      req.poster = (req.file.destination + '/' + req.file.filename).replace('./src/public','')
    }
