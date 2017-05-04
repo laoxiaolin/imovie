@@ -79,6 +79,7 @@ gulp.task('clean', () => {
 gulp.task('jslint', () => {  
   return gulp.src(paths.js)
     .pipe(jshint())
+    // .pipe(jshint.reporter('default'))
 });
 
 

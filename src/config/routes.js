@@ -2,6 +2,7 @@ var Index = require('../app/controllers/index')
 var Movie = require('../app/controllers/movie')
 var User  = require('../app/controllers/user')
 var Category  = require('../app/controllers/category')
+var multer    = require('multer')
 
 
 module.exports = (app) => {
@@ -12,7 +13,30 @@ module.exports = (app) => {
         app.locals.user = _user
         next()
     })
-    
+
+    // multer上传组件设置
+    var storage = multer.diskStorage({
+        destination: './src/public/upload',
+        filename:  (req, file, cb) => {
+            switch (file.mimetype) {
+                case 'image/jpeg':
+                    ext = '.jpeg';
+                    break;
+                case 'image/png':
+                    ext = '.png';
+                    break;
+            }
+            cb(null, file.fieldname+'-'+Date.now() + ext);
+        }
+    })
+    var upload = multer({
+      storage: storage,
+      limits: {
+        fieldNameSize: 50,
+        fieldSize: 1024 * 1024 * 10
+      }
+    })
+
 
     // Index
     app.get('/', Index.index)
@@ -46,7 +70,7 @@ module.exports = (app) => {
     app.get('/admin/movie/list', User.signinRequired, User.adminRequired, Movie.list)
     app.get('/admin/movie/new', User.signinRequired, User.adminRequired, Movie.new)
     app.get('/admin/movie/update/:id', User.signinRequired, User.adminRequired, Movie.update)
-    app.post('/admin/movie', User.signinRequired, User.adminRequired, Movie.save)
+    app.post('/admin/movie', User.signinRequired, User.adminRequired, upload.single('uploadPoster'), Movie.savePoster, Movie.save)
     app.delete('/admin/movie/list', User.signinRequired, User.adminRequired, Movie.delete)
 
 }

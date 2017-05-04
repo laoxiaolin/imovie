@@ -15,6 +15,10 @@ nav.navbar.navbar-default.navbar-fixed-top.navbar-inverse(role="navigation")
           a(href="#") 大片推荐
         li
           a(href="#") 新片推荐
+      form.navbar-form.navbar-right(role="search" method="GET" action="/movie/result")
+        .form-group
+          input.form-control(type="text" name="q")
+        button.btn.btn-default(type="submit") 搜索
       //- button.btn.btn-default.navbar-btn.navbar-right(type="button" data-toggle="modal" data-target="#signinModal") 登陆
       if user
         p.navbar-text.navbar-right 欢迎你, #{user.name}

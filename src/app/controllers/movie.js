@@ -2,8 +2,6 @@ var Category = require('../models/category')
 var Movie    = require('../models/movie')
 var _        = require('underscore')
 
-
-
  //front: movie detail page
 exports.detail = (req, res) => {
    var id = req.params.id
@@ -25,8 +23,6 @@ exports.detail = (req, res) => {
              // })
       })
 }
-
-
 
 
 //admin:list movie page
@@ -86,6 +82,10 @@ exports.save = (req, res) => {
    var id = _movie._id
    var __movie
 
+   if (req.poster){
+      _movie.poster = req.poster
+   }
+
    if (id === undefined) {          // add new
        __movie = new Movie(_movie)
        var categoryId = _movie.category
@@ -138,4 +138,13 @@ exports.delete = (req, res) => {
            }
        })
    }
+}
+
+//admin:delete movie action
+exports.savePoster = (req, res, next) => {
+   console.log(req.file)
+   if(req.file){
+     req.poster = (req.file.destination + '/' + req.file.filename).replace('./src/public','')
+   }
+   next()
 }
