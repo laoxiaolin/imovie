@@ -22,3 +22,7 @@ footer{
 hr.divider{
   margin: 40px 0;
 }
+
+.u-floatRight {
+    float: right!important;
+}

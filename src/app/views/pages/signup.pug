@@ -1,0 +1,29 @@
+extends ../layout
+
+block content
+  .container
+    .row
+      .col-xs-12.col-sm-6.col-md-8
+        p 封面内容
+      .col-sm-6.col-md-4
+        .well.center-block(style="max-width: 400px;")
+          h4 #{title}
+          form(method="POST", action="/user/signup")
+            .form-group
+              label.control-label(for="signupName") 用户名
+              input#signupName.form-control(name="user[name]" type="text" placeholder="不支持中文用户名")            
+            .form-group
+              label.control-label(for="signupEmail") 邮箱地址
+              input#signupEmail.form-control(name="user[email]" type="text" placeholder="例如：123123@qq.com")
+              //- span#helpBlock.help-block 请输入电子邮箱地址，例如：12332234@qq.com
+            .form-group
+              label.control-label(for="signupPassword") 设置密码
+              input#signupPassword.form-control(name="user[password]" type="password" placeholder="密码")            
+            .form-group
+              label.control-label(for="signupPassword") 确认密码
+              input#signupPassword.form-control(name="passwordAgain" type="password" placeholder="确认密码")
+            .form-group
+              label.control-label(for="signupPhoneNumber") 手机号码
+              input#signupPhoneNumber.form-control(name="user[phoneNumber]" type="text" placeholder="例如：18590803232")
+              //- button.btn.btn-default(type="button", data-dismiss="modal") 关闭
+            button.btn.btn-primary.active(type="submit") 注册为会员

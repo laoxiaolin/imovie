@@ -3,15 +3,16 @@ extends ../layout
 block content
   .container
     .row
-      .col-md-5
-        form(method="POST", action="/user/signin")
-          .modal-body
+      .col-xs-12.col-sm-6.col-md-8
+        p 封面内容
+      .col-sm-6.col-md-4
+        .well.center-block(style="max-width: 400px;")
+          h4 #{title}
+          form(method="POST", action="/user/signin")
             .form-group
-              label(for="signinName") 用户名
-              input#signinName.form-control(name="user[name]" type="text")
+              label.control-label(for="signinName") 用户名
+              input#signinName.form-control(name="user[name]" type="text" placeholder="请输入用户名")
             .form-group
-              label(for="signinPassword") 密码
-              input#signinPassword.form-control(name="user[password]" type="text")
-          .modal-footer
-            button.btn.btn-default(type="button", data-dismiss="modal") 关闭
-            button.btn.btn-success(type="submit") 提交
+              label.control-label(for="signinPassword") 密码
+              input#signinPassword.form-control(name="user[password]" type="password" placeholder="请输入密码")
+            button.btn.btn-primary.active(type="submit") 提交

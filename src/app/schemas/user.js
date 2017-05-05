@@ -4,23 +4,33 @@ var SALT_WORK_FACTOR = 10
 
 var UserSchema = new mongoose.Schema({
     name: String,
+    email: String,
     password: String,
+    phoneNumber: Number,
     // 0:nomal user
     // 1:verfied user(邮件激活后的用户)
     // 2:professonal user
     // ..
     // >10: admin
-    // >50: super admin
+    // >50: super admin   
     role: {
         type: Number,
         default: 0
+    },    
+    loginTotal: {
+        type: Number,
+        default: 0
     },
-    meta: {
-        createAt: {
+    login: {
+        lastIp: String,
+        lastTime: {
             type: Date,
             default: Date.now()
-        },
-        updateAt: {
+        }
+    },
+    reg: {
+        regIp: String,
+        createAt: {
             type: Date,
             default: Date.now()
         }
@@ -31,32 +41,17 @@ UserSchema.pre('save', function(next) {
     var user = this
 
     if (this.isNew) {
-        this.meta.createAt = this.meta.updateAt = Date.now()
-    } else {
-        this.meta.updateAt = Date.now()
+        this.reg.createAt = this.login.lastTime = Date.now()
+        // this.reg.regIp    = req.ip
     }
 
 
-    // bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
-    //     if (err) return next(err)
+    bcrypt.hash(user.password, SALT_WORK_FACTOR, function(err, hash) {
+        if (err) return next(err)
 
-    //     bcrypt.hash(user.password, salt, function(err, hash){
-    //     	if (err) return next(err)
-
-    //     	user.password = hash
-    //     	next()
-    //     })
-
-    // })
-
-    // console.log('USERPWD : ' + user.password)
-
-        bcrypt.hash(user.password, SALT_WORK_FACTOR, function(err, hash) {
-            if (err) return next(err)
-
-            user.password = hash
-            next()
-        })
+        user.password = hash
+        next()
+    })
 
 })
 

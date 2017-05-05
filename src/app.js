@@ -5,6 +5,8 @@ var cookieParser = require('cookie-parser')
 var session      = require('express-session')
 var mongoStore   = require('connect-mongo')(session)
 var fs         = require('fs')
+var logger     = require('morgan')
+
 
 var app     = express()
 
@@ -69,10 +71,10 @@ require('./config/routes')(app)           //此处有很多写法，注意学习
 
 // 调试程序
 if(app.get('env') === 'development'){
-  app.set('showStackError', true)       //未理解什么意思
-  // app.use(logger(':method :url :status'))
-  app.locals.pretty = true             //未理解什么意思
-  // mongoose.set('debug', true)       //mongoose操作的内容
+  app.set('showStackError', true)           //未理解什么意思
+  app.use(logger(':method :url :status'))   //未理解什么意思
+  app.locals.pretty = true                 //未理解什么意思
+  mongoose.set('debug', true)       //mongoose操作的内容
 }
 
 //启动监听

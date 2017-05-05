@@ -47,7 +47,7 @@ module.exports = (app) => {
     app.get('/logout', User.logout)
     app.post('/user/signup', User.signup)
     app.post('/user/signin', User.signin)
-    app.get('/admin/user', User.signinRequired, User.adminRequired ,User.list)
+    app.get('/admin/user/list', User.signinRequired, User.adminRequired ,User.list)
 
 
     // ==== category ====

@@ -34,10 +34,11 @@ exports.detail = (req, res) => {
 exports.list = (req, res) => {
    Movie
     .find({})
+    .sort({_id : -1})
     .populate({
       path: 'category',
       select: 'name',
-      options: { limit: 18 }
+      options: { limit: 10 }
     })
     .exec(function(err, movies) {
        if (err) {
@@ -117,7 +118,6 @@ exports.save = (req, res) => {
            if (err) {
                console.log(err)
            }
-
            __movie = _.extend(movie, _movie)
            __movie.save((err, movie) => {
                if (err) {
