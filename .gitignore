@@ -1,4 +1,11 @@
-#忽略提交的目录
+# 忽略提交的目录
 node_modules/
-dist/
 bower_components/
+build/
+dist/
+
+# upload files:
+src/public/upload/
+
+# My configurations:
+mongod.cfg
