@@ -1,4 +1,7 @@
 var mongoose = require('mongoose')
+var Schema = mongoose.Schema
+var ObjectId = Schema.Types.ObjectId
+
 var bcrypt = require('bcrypt')
 var SALT_WORK_FACTOR = 10
 
@@ -7,6 +10,21 @@ var UserSchema = new mongoose.Schema({
     email: String,
     password: String,
     phoneNumber: Number,
+    availableBalance: {type: Number, default: 0},
+    totalRecharge: {type: Number, default: 0},
+    vipStatus: {type: Number, default: 0},
+    vip: {
+        //0
+        //1: 包1天
+        //7: 包7天
+        //30: 包30天
+        Level: {type: Number, default: 0},
+        createAt: {
+            type: Date,
+            default: Date.now()
+        }
+    },
+    orders: [{type: ObjectId, ref: 'RechargeOrder'}],
     // 0:nomal user
     // 1:verfied user(邮件激活后的用户)
     // 2:professonal user
@@ -16,7 +34,7 @@ var UserSchema = new mongoose.Schema({
     role: {
         type: Number,
         default: 0
-    },    
+    },
     loginTotal: {
         type: Number,
         default: 0

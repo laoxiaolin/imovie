@@ -56,6 +56,10 @@ block content
           .col-sm-10
             input#inputYear.form-control(type="text", name="movie[year]", value=movie.year)
         .form-group
+          label.col-sm-3.control-lable(for="inputPrice") 销售价格
+          .col-sm-10
+            input#inputPrice.form-control(type="text", name="movie[price]", value=movie.price)      
+        .form-group
           label.col-sm-3.control-lable(for="inputSummary") 电影简介
           .col-sm-10
             input#inputSummary.form-control(type="text", name="movie[summary]", value=movie.summary)

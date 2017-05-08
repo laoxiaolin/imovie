@@ -1,0 +1,94 @@
+extends ../../layout
+
+block content
+  .container
+    case orderStatus
+      when 25
+        .progress
+          .progress-bar.progress-bar-danger(role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%;") 确认充值
+        form.form-horizontal(method="POST" action="/recharge/confirmrecharge")
+          .form-group
+            label.col-sm-2.control-label 当前余额：
+            .col-sm-10
+              p.form-control-static #{availableBalance}
+          .form-group
+            label.col-sm-2.control-label(for="inputTotalRecharge") 选择充值金额：
+            .col-sm-10
+              .radio
+                label
+                  input(type="radio" name="totalRecharge" value="10" checked)
+                  | 10元
+              .radio
+                label
+                  input(type="radio" name="totalRecharge" value="30")
+                  | 30元
+              .radio
+                label
+                  input(type="radio" name="totalRecharge" value="50")
+                  | 50元
+          .form-group
+            .col-sm-offset-2.col-sm-10
+              button.btn.btn-success(type="submit") 立即充值
+      when 50
+        .progress
+          .progress-bar.progress-bar-danger(role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%;") 
+            span.sr-only 确认充值
+          .progress-bar.progress-bar-warning.progress-bar-striped(role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%;") 确认订单
+        form.form-horizontal(method="POST" action="/recharge/confirmorder")
+          input(type="hidden", name="totalRecharge", value=totalRecharge)
+          .form-group
+            label.col-sm-2.control-label 当前余额：
+            .col-sm-10
+              p.form-control-static #{availableBalance}
+          .form-group
+            label.col-sm-2.control-label 充值金额：
+            .col-sm-10
+              p.form-control-static #{totalRecharge}
+          .form-group
+            .col-sm-offset-2.col-sm-10
+              button.btn.btn-success(type="submit") 确认充值
+      when 75
+        .progress
+          .progress-bar.progress-bar-danger(role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%;") 
+            span.sr-only 确认充值
+          .progress-bar.progress-bar-warning(role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%;")
+            span.sr-only 确认订单
+          .progress-bar.progress-bar-primary.progress-bar-striped(role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%;") 选择支付方式
+        form.form-horizontal(method="POST" action="/recharge/pay")
+          input(type="hidden", name="recharge[totalRecharge]", value=totalRecharge)
+          input(type="hidden", name="recharge[user]", value=userId)
+          input(type="hidden", name="recharge[transactionType]", value=1)
+          .form-group
+            label.col-sm-2.control-label 当前余额：
+            .col-sm-10
+              p.form-control-static #{availableBalance}
+          .form-group
+            label.col-sm-2.control-label 充值金额：
+            .col-sm-10
+              p.form-control-static #{totalRecharge}
+          .form-group
+            label.col-sm-2.control-label(for="input") 选择支付方式：
+            .col-sm-10
+              .radio
+                label
+                  input(type="radio" name="recharge[payChannel]" value="0" checked)
+                  | 微信支付
+              .radio
+                label
+                  input(type="radio" name="recharge[payChannel]" value="1")
+                  | 支付宝支付
+          .form-group
+            .col-sm-offset-2.col-sm-10
+              button.btn.btn-success(type="submit") 进行充值
+      when 100
+        .progress
+          .progress-bar.progress-bar-danger(role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%;") 
+            span.sr-only 确认充值
+          .progress-bar.progress-bar-warning(role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%;")
+            span.sr-only 确认订单
+          .progress-bar.progress-bar-primary(role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%;")           
+            span.sr-only 选择支付方式
+          .progress-bar.progress-bar-success.progress-bar-striped(role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%;") 支付成功
+        p.text-success
+          h4 充值成功，您当前可用余额为：#{availableBalance}
+

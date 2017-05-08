@@ -8,7 +8,7 @@ block content
       .col-sm-6.col-md-4
         .well.center-block(style="max-width: 400px;")
           h4 #{title}
-          form(method="POST", action="/user/signin")
+          form(method="POST" action="/user/signin")
             .form-group
               label.control-label(for="signinName") 用户名
               input#signinName.form-control(name="user[name]" type="text" placeholder="请输入用户名")

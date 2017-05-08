@@ -1,4 +1,3 @@
- // var Movie = require('../models/movie')
  var Category = require('../models/category')
  var _ = require('underscore')
 

@@ -9,6 +9,15 @@ var logger     = require('morgan')
 
 
 var app     = express()
+// 管理路径
+var src_dir = './src',
+    dst_dir = './dist';
+var port    = process.env.PORT || 85
+
+// 基本设置
+app.set('views', src_dir + '/app/views/pages')
+app.set('view engine', 'pug')
+app.locals.moment = require('moment')       //未理解什么意思
 
 //连接数据库
 var dbUrl   = 'mongodb://localhost:81/imovie'
@@ -16,7 +25,7 @@ mongoose.Promise = global.Promise
 mongoose.connect(dbUrl)
 
 
-//读取models下的所有文件
+//读取models下的所有文件，并加载
 var models_path = __dirname + '\\app\\models'
 // console.log(models_path)
 var walk = (path)=>{
@@ -37,15 +46,6 @@ var walk = (path)=>{
 }
 walk(models_path)
 
-// 管理路径
-var src_dir = './src',
-    dst_dir = './dist';
-var port    = process.env.PORT || 85
-
-// 基本设置
-app.set('views', src_dir + '/app/views/pages')
-app.set('view engine', 'pug')
-app.locals.moment = require('moment')       //未理解什么意思
 
 
 //装载中间件

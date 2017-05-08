@@ -57,7 +57,7 @@ exports.signin = (req, res) => {
     var name = _user.name
     var password = _user.password
     var loginIp = req.ip
-    console.log(loginIp)
+    // console.log(loginIp)
 
     User.findOne({'name': name }, function(err, user) {
         if (err) { console.log(err) }

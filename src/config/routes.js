@@ -2,6 +2,7 @@ var Index = require('../app/controllers/index')
 var Movie = require('../app/controllers/movie')
 var User  = require('../app/controllers/user')
 var Category  = require('../app/controllers/category')
+var Recharge  = require('../app/controllers/recharge')
 var multer    = require('multer')
 
 
@@ -41,17 +42,22 @@ module.exports = (app) => {
     // Index
     app.get('/', Index.index)
 
-    // memeber
+    //=== Memeber ===
+    // Front memeber
     app.get('/signup', User.showSignupPage)
     app.get('/signin', User.showSigninPage)
     app.get('/logout', User.logout)
     app.post('/user/signup', User.signup)
     app.post('/user/signin', User.signin)
+    // admin memeber
     app.get('/admin/user/list', User.signinRequired, User.adminRequired ,User.list)
 
 
-    // ==== category ====
-    // front category
+    // ===Recharge===
+    //Front Recharge
+    app.get('/recharge', User.signinRequired, Recharge.new)
+    app.post('/recharge/confirmrecharge', User.signinRequired, Recharge.confirmRecharge)
+    app.post('/recharge/confirmorder', Recharge.confirmOrder)
     
 
     // admin category

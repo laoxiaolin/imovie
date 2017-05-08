@@ -12,6 +12,7 @@ var MovieSchema = new Schema({
 	poster: String,
 	year: Number,
 	pv: {type: Number, default: 0},
+	price: {type: Number, default: 5},
 	category: {type: ObjectId, ref: 'Category'},
 	meta: {
 		createAt: {
@@ -24,6 +25,7 @@ var MovieSchema = new Schema({
 		}
 	}
 })
+
 
 
 MovieSchema.pre('save', function(next){

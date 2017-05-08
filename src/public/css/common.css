@@ -26,3 +26,9 @@ hr.divider{
 .u-floatRight {
     float: right!important;
 }
+
+.center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
